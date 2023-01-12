@@ -19,7 +19,7 @@ doc = pdf_reader('C:/Your_path/Your_document.pdf', nlp)
 
 # SOLUTION 2
 # Set path to your document
-path='C:/Your_path/Your_document.pdf'
+path='C:/Your_path/Your_document.txt'
 for file in glob.glob(path):
     with open(file, encoding='utf-8', errors='ignore') as file_in:
         text = file_in.read()
