@@ -10,8 +10,6 @@
 # - pasting data from clipboard (solution 3)
 
 
-
-
 # SOLUTION 1
 import spacy
 from spacypdfreader import pdf_reader
@@ -21,7 +19,7 @@ doc = pdf_reader('C:/Your_path/Your_document.pdf', nlp)
 
 # SOLUTION 2
 # Set path to your document
-path='C:/Users/dawwr/Downloads/zadanie_zaliczeniowe_2022_23.pdf'
+path='C:/Your_path/Your_document.pdf'
 for file in glob.glob(path):
     with open(file, encoding='utf-8', errors='ignore') as file_in:
         text = file_in.read()
