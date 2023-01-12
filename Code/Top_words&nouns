@@ -1,0 +1,21 @@
+-- MIT License
+
+-- Copyright (C) 2016-2022 ExplosionAI GmbH, 2016 spaCy GmbH, 2015 Matthew Honnibal
+-- Copyright (c) 2023 Dawid Wróblewski, Dawid Świercz, Mariusz Lango
+
+def words_nouns(text,limit):
+    doc=nlp(text)
+    words = [token.text
+             for token in doc
+             if not token.is_stop and not token.is_punct]
+    word_freq = Counter(words)
+    common_words = word_freq.most_common(limit)
+    # noun tokens that arent stop words or punctuations
+    nouns = [token.text
+             for token in doc
+             if (not token.is_stop and
+                 not token.is_punct and
+                 token.pos_ == "NOUN")]
+    common_nouns = noun_freq.most_common(limit)
+    print("Common Worlds: ", common_words)
+    print("Common Nouns: ", common_nouns)
