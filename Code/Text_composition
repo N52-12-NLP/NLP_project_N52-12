@@ -1,0 +1,20 @@
+-- MIT License
+
+-- Copyright (C) 2016-2022 ExplosionAI GmbH, 2016 spaCy GmbH, 2015 Matthew Honnibal
+-- Copyright (c) 2023 Dawid Wróblewski, Dawid Świercz, Mariusz Lango
+
+
+from __future__ import print_function, unicode_literals
+from collections import defaultdict, Counter
+
+def text_analyze(text): 
+    doc=nlp(text)
+    pos_counts = defaultdict(Counter)
+
+    for token in doc:
+        pos_counts[token.pos][token.orth] += 1
+
+    for pos_id, counts in sorted(pos_counts.items()):
+        pos = doc.vocab.strings[pos_id]
+        for orth_id, count in counts.most_common():
+            print(pos, count, doc.vocab.strings[orth_id])
