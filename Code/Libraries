@@ -1,0 +1,27 @@
+-- MIT License
+
+-- Copyright (C) 2016-2022 ExplosionAI GmbH, 2016 spaCy GmbH, 2015 Matthew Honnibal
+-- Copyright (c) 2023 Dawid Wróblewski, Dawid Świercz, Mariusz Lango
+
+# Mandatory libraries
+import spacy
+from spacy.lang.en.stop_words import STOP_WORDS
+from string import punctuation
+from collections import Counter
+from heapq import nlargest
+from spacypdfreader import pdf_reader
+import blob
+
+# Trained language package (https://spacy.io/models/en)
+nlp = spacy.load("en_core_web_sm")
+
+# Setting path for the document
+
+
+# Uploading .txt file - PATH has to be set properly (CAUTION, works only for .txt files).
+path = 'C:/Your_path/Your_document.txt' 
+for file in glob.glob(path):
+    with open(file, encoding='utf-8', errors='ignore') as file_in:
+        text = file_in.read()
+
+# Uploading .pdf file (CAUTION, works only for .txt files) 
