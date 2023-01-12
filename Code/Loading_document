@@ -1,0 +1,31 @@
+-- MIT License
+
+-- Copyright (C) 2016-2022 ExplosionAI GmbH, 2016 spaCy GmbH, 2015 Matthew Honnibal
+-- Copyright (c) 2023 Dawid Wróblewski, Dawid Świercz, Mariusz Lango
+
+# IMPORTANT
+# Currently only 3 types of documents can be analyzed:
+# - .pdf (use solution 1)
+# - .txt (use solution 2)
+# - pasting data from clipboard (solution 3)
+
+
+
+
+# SOLUTION 1
+import spacy
+from spacypdfreader import pdf_reader
+
+# Set path to your document
+doc = pdf_reader('C:/Your_path/Your_document.pdf', nlp)
+
+# SOLUTION 2
+# Set path to your document
+path='C:/Users/dawwr/Downloads/zadanie_zaliczeniowe_2022_23.pdf'
+for file in glob.glob(path):
+    with open(file, encoding='utf-8', errors='ignore') as file_in:
+        text = file_in.read()
+
+# SOLUTION 3
+# Paste your clipboard between ''
+text = ''
