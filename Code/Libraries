@@ -13,17 +13,7 @@ from spacypdfreader import pdf_reader
 import blob
 from __future__ import print_function, unicode_literals
 from collections import defaultdict
+import re
 
 # Trained language package (https://spacy.io/models/en)
 nlp = spacy.load("en_core_web_sm")
-
-# Setting path for the document
-
-
-# Uploading .txt file - PATH has to be set properly (CAUTION, works only for .txt files).
-path = 'C:/Your_path/Your_document.txt' 
-for file in glob.glob(path):
-    with open(file, encoding='utf-8', errors='ignore') as file_in:
-        text = file_in.read()
-
-# Uploading .pdf file (CAUTION, works only for .txt files) 
