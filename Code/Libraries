@@ -14,6 +14,7 @@ import blob
 from __future__ import print_function, unicode_literals
 from collections import defaultdict
 import re
+from PyPDF2 import PdfReader
 
 # Trained language package (https://spacy.io/models/en)
 nlp = spacy.load("en_core_web_sm")
