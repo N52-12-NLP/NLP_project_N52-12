@@ -9,13 +9,12 @@
 # - .txt (use solution 2)
 # - pasting data from clipboard (solution 3)
 
-
 # SOLUTION 1
-import spacy
-from spacypdfreader import pdf_reader
-
-# Set path to your document
-doc = pdf_reader('C:/Your_path/Your_document.pdf', nlp)
+reader = PdfReader("C:/Your_path/Your_document.pdf") #Change path!
+text = ""
+for page in reader.pages:
+    text += page.extract_text() + "\n"
+text = re.sub('\n', '', text)  
 
 # SOLUTION 2
 # Set path to your document
