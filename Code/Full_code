@@ -1,0 +1,124 @@
+-- MIT License
+
+-- Copyright (C) 2016-2022 ExplosionAI GmbH, 2016 spaCy GmbH, 2015 Matthew Honnibal
+-- Copyright (c) 2023 Dawid Wróblewski, Dawid Świercz, Mariusz Lango
+
+
+# Import of all libraries
+
+import spacy
+from spacy.lang.en.stop_words import STOP_WORDS
+from string import punctuation
+from collections import Counter
+from heapq import nlargest
+from spacypdfreader import pdf_reader
+import blob
+from __future__ import print_function, unicode_literals
+from collections import defaultdict
+import re
+from PyPDF2 import PdfReader
+
+# Trained language package (https://spacy.io/models/en)
+nlp = spacy.load("en_core_web_sm")
+
+# Loading text/file to analyze
+      # IMPORTANT
+      # Currently only 3 types of documents can be analyzed:
+        # - .pdf (use solution 1)
+        # - .txt (use solution 2)
+        # - pasting data from clipboard (solution 3)
+
+
+      # SOLUTION 1
+        reader = PdfReader("C:/Your_path/Your_document.pdf") #Change path!
+        text = ""
+        for page in reader.pages:
+            text += page.extract_text() + "\n"
+        text = re.sub('\n', '', text)    
+
+      # SOLUTION 2
+      # Set path to your document
+      path='C:/Your_path/Your_document.txt'
+      for file in glob.glob(path):
+          with open(file, encoding='utf-8', errors='ignore') as file_in:
+              text = file_in.read()
+
+      # SOLUTION 3
+      # Paste your clipboard between ''
+      text = ''
+      
+# Analysis of text composition      
+def text_analyze(text): 
+    doc=nlp(text)
+    pos_counts = defaultdict(Counter)
+
+    for token in doc:
+        pos_counts[token.pos][token.orth] += 1
+
+    for pos_id, counts in sorted(pos_counts.items()):
+        pos = doc.vocab.strings[pos_id]
+        for orth_id, count in counts.most_common():
+            print(pos, count, doc.vocab.strings[orth_id])     
+            
+# Analysis of top used words and nouns  (second parameter describes how many records should be returned
+def words_nouns(text,limit):
+    doc=nlp(text)
+    words = [token.text
+             for token in doc
+             if not token.is_stop and not token.is_punct]
+    word_freq = Counter(words)
+    common_words = word_freq.most_common(limit)
+    # noun tokens that arent stop words or punctuations
+    nouns = [token.text
+             for token in doc
+             if (not token.is_stop and
+                 not token.is_punct and
+                 token.pos_ == "NOUN")]
+    common_nouns = noun_freq.most_common(limit)
+    print("Common Worlds: ", common_words)
+    print("Common Nouns: ", common_nouns)
+    
+ # Text summarization (second parametr describes in % how much original text should be summarized)
+ def top_sentence(text, limit):
+    keyword = []
+    pos_tag = ['PROPN', 'ADJ', 'NOUN', 'VERB']
+    doc = nlp(text.lower())
+    sentences=len(list(doc.sents))
+    break_point=(limit*sentences)/100
+    for token in doc:
+        if(token.text in nlp.Defaults.stop_words or token.text in punctuation):
+            continue
+        if(token.pos_ in pos_tag):
+            keyword.append(token.text)
+    
+    freq_word = Counter(keyword)
+    max_freq = Counter(keyword).most_common(1)[0][1]
+    for w in freq_word:
+        freq_word[w] = (freq_word[w]/max_freq)
+        
+    sent_strength={}
+    for sent in doc.sents:
+        for word in sent:
+            if word.text in freq_word.keys():
+                if sent in sent_strength.keys():
+                    sent_strength[sent]+=freq_word[word.text]
+                else:
+                    sent_strength[sent]=freq_word[word.text]
+    
+    summary = []
+    
+    sorted_x = sorted(sent_strength.items(), key=lambda kv: kv[1], reverse=True)
+    
+    counter = 0
+    for i in range(len(sorted_x)):
+        summary.append(str(sorted_x[i][0]).capitalize())
+
+        counter += 1
+        #if(counter >= limit):
+            #break
+        if counter >= break_point:
+            break
+    return ' '.join(summary)
+ 
+ 
+
