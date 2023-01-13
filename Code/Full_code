@@ -12,7 +12,7 @@ from string import punctuation
 from collections import Counter
 from heapq import nlargest
 from spacypdfreader import pdf_reader
-import blob
+import glob
 from __future__ import print_function, unicode_literals
 from collections import defaultdict
 import re
