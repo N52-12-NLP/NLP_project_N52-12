@@ -16,6 +16,7 @@ def words_nouns(text,limit):
              if (not token.is_stop and
                  not token.is_punct and
                  token.pos_ == "NOUN")]
+    noun_freq = Counter(nouns)
     common_nouns = noun_freq.most_common(limit)
     print("Common Worlds: ", common_words)
     print("Common Nouns: ", common_nouns)
