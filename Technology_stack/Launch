@@ -1,1 +1,22 @@
-tt
+# Software
+
+1. Windows 11 system on 64-bit AMD architecture
+
+2. Anaconda Navigator v2.1.1
+https://www.anaconda.com/
+
+3. Python kernal v3.9.7
+https://www.python.org/
+
+4. Spacy v3.4.4
+https://spacy.io/
+
+5. PyPDF2 v3.0.1
+https://pypdf2.readthedocs.io/en/3.0.0/
+
+6. English trained pipeline: en_core_web_sm
+https://spacy.io/models/en
+
+7. JupyterLab 3.2.1
+https://jupyter.org/
+
