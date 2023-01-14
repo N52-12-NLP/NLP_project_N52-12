@@ -1,0 +1,10 @@
+-- MIT License
+
+-- Copyright (C) 2016-2022 ExplosionAI GmbH, 2016 spaCy GmbH, 2015 Matthew Honnibal
+-- Copyright (c) 2023 Dawid Wróblewski, Dawid Świercz, Mariusz Lango
+
+from spacy import displacy
+
+doc=nlp(text)
+entities=[(i, i.label_, i.label) for i in doc.ents]
+print(entities)
