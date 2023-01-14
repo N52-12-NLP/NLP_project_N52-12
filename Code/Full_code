@@ -56,7 +56,7 @@ print(tokens)
 punctuation = punctuation + '\n'
 
 # Sentence print(tokens)
-punctuation = punctuation + '\n'tokenization
+punctuation = punctuation + '\n'
 doc = nlp(text)
 sents_list = []
 for sent in doc.sents:
@@ -146,11 +146,15 @@ def words_nouns(text,limit):
     
     
 # Documents similarity
-text1=
-text2=
-doc1 = nlp("text1")
+#Text 2
+reader = PdfReader("""C:/Users\dawwr\Downloads\Brazil55-62.pdf""") #Change path!
+text2 = ""
+for page in reader.pages:
+    text2 += page.extract_text() + "\n"
+text2 = re.sub('\n', '', text2)  
+doc = nlp("text")
 doc2 = nlp("text2")
-doc1.similarity(doc2)
+doc.similarity(doc2)
 
 
 print(tokens)
