@@ -1,0 +1,17 @@
+-- MIT License
+
+-- Copyright (C) 2016-2022 ExplosionAI GmbH, 2016 spaCy GmbH, 2015 Matthew Honnibal
+-- Copyright (c) 2023 Dawid Wróblewski, Dawid Świercz, Mariusz Lango
+
+# Text tokenization
+tokens = [token.text for token in doc]
+print(tokens)
+punctuation = punctuation + '\n'
+
+# Sentence tokenization
+doc = nlp(text)
+sents_list = []
+for sent in doc.sents:
+    sents_list.append(sent.text)
+print(sents_list)
+punctuation = punctuation + '\n'
